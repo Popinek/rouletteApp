@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Roulette</title>
+</head>
+<body>
+    <h1>European Roulette</h1>
+    <p>Your current bankroll: ${{ bankroll }}</p>
+
+    {% if result %}
+        <p style="color: {% if win %}green{% else %}red{% endif %};">{{ result }}</p>
+    {% endif %}
+
+    <form method="POST" action="/play">
+        <label for="number">Choose a number to bet on (0-36):</label>
+        <input type="number" name="number" id="number" min="0" max="36" required>
+        <button type="submit">Place $1 Bet</button>
+    </form>
+
+    <h2>Your Stats</h2>
+    <p>Total Wins: ${{ total_wins }}</p>
+    <p>Total Losses: ${{ total_losses }}</p>
+    <p>Win Count: {{ win_count }}</p>
+    <p>Loss Count: {{ loss_count }}</p>
+    <p>Net Gain/Loss: ${{ net_gain }}</p>
+    <p>You are currently: <strong>{{ luck_status }}</strong></p>
+
+    <p><a href="/">Restart with new bankroll</a></p>
+</body>
+</html>
